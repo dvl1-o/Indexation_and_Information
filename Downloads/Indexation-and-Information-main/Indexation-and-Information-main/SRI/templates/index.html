@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SRI - Système de Recherche d'Information</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="title"><span class="title-sri">SRI</span><span class="title-sub"> Recherche</span></h1>
+                <p class="subtitle">Système de Recherche d'Information</p>
+            </div>
+        </header>
+
+        <!-- Search Section -->
+        <section class="search-section">
+            <div class="search-box">
+                <input 
+                    type="text" 
+                    id="queryInput" 
+                    class="search-input" 
+                    placeholder="Entrez votre recherche..."
+                    autocomplete="off"
+                >
+                <button id="searchBtn" class="search-btn" title="Rechercher">
+                    🔍
+                </button>
+            </div>
+        </section>
+
+        <!-- Model Selection -->
+        <section class="model-section">
+            <fieldset class="model-fieldset">
+                <legend>MODÈLE DE RECHERCHE</legend>
+                <div class="model-grid">
+                    <label class="model-label">
+                        <input type="radio" name="model" value="cosine"> 
+                        <span class="icon">📐</span> Cosinus
+                    </label>
+                    <label class="model-label">
+                        <input type="radio" name="model" value="boolean"> 
+                        <span class="icon">📋</span> Booléen
+                    </label>
+                    <label class="model-label">
+                        <input type="radio" name="model" value="boolean_extended" checked> 
+                        <span class="icon">🌐</span> Booléen étendu
+                    </label>
+                    <label class="model-label">
+                        <input type="radio" name="model" value="lukasiewicz"> 
+                        <span class="icon">🔢</span> Lukasiewicz
+                    </label>
+                    <label class="model-label">
+                        <input type="radio" name="model" value="kraft"> 
+                        <span class="icon">📄</span> Kraft
+                    </label>
+                    <label class="model-label">
+                        <input type="radio" name="model" value="jaccard"> 
+                        <span class="icon">📊</span> Jaccard
+                    </label>
+                    <label class="model-label">
+                        <input type="radio" name="model" value="dice"> 
+                        <span class="icon">🎲</span> Dice
+                    </label>
+                    <label class="model-label">
+                        <input type="radio" name="model" value="euclidean"> 
+                        <span class="icon">📏</span> Euclidienne
+                    </label>
+                </div>
+            </fieldset>
+        </section>
+
+        <!-- Status -->
+        <div id="status" class="status-bar"></div>
+
+        <!-- Results Section -->
+        <section class="results-section">
+            <div id="resultsList" class="results-list"></div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Collection de documents chargée • Cliquez sur un résultat pour voir le document complet</p>
+        </footer>
+    </div>
+
+    <!-- Document Modal -->
+    <div id="docModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="docTitle"></h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-meta">
+                <span id="docExt"></span>
+                <span id="docPath"></span>
+            </div>
+            <div id="docBody" class="modal-body"></div>
+            <div class="modal-footer">
+                <p id="docFooter"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
